@@ -1,0 +1,21 @@
+name: Test Lowercase Conversion
+runs-on: ${{ steps.convert.outputs.lowercase_value }}
+on:
+  workflow_dispatch:
+    inputs:
+      myInput:
+        description: 'Enter a value'
+        required: true
+
+jobs:
+  convert_input_to_lowercase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Convert input to lowercase
+        id: convert
+        run: |
+          lowercase_value=$(echo '${{ github.event.inputs.myInput }}' | tr '[:upper:]' '[:lower:]')
+          echo "::set-output name=lowercase_value::$lowercase_value"
+        
+      - name: Use the lowercase value
+        run: echo "Lowercase value is: ${{ steps.convert.outputs.lowercase_value }}"
