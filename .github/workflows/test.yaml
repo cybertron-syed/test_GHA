@@ -1,5 +1,5 @@
 name: Test Lowercase Conversion
-runs-on: ${{ steps.convert.outputs.lowercase_value }}
+run-name: ${{ steps.convert.outputs.lowercase_value }}
 on:
   workflow_dispatch:
     inputs:
