@@ -15,7 +15,7 @@ jobs:
         id: convert
         run: |
           lowercase_value=$(echo '${{ github.event.inputs.myInput }}' | tr '[:upper:]' '[:lower:]')
-          echo "::set-output name=lowercase_value::$lowercase_value"
+          echo "lowercase_value=$lowercase_value" >> $GITHUB_ENV
         
       - name: Use the lowercase value
-        run: echo "Lowercase value is: ${{ steps.convert.outputs.lowercase_value }}"
+        run: echo "Lowercase value is: ${{ env.lowercase_value }}"
